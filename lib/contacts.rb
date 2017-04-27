@@ -8,15 +8,17 @@ class Contacts
   attr_accessor :job_title
   attr_accessor :phone_array
   attr_accessor :email_array
+  attr_accessor :id
 
 
 
-  def initialize (first_name, last_name, job_title, phone_params, email_params)
+  def initialize (first_name, last_name, job_title, phone_array, email_array)
     self.first_name = first_name
     self.last_name = last_name
     self.job_title = job_title
-    self.phone_array = [Phone.new(phone_params.fetch(:type), phone_params.fetch(:number))]
-    self.email_array = [Email.new(email_params.fetch(:type), email_params.fetch(:email))]
+    self.phone_array = phone_array
+    self.email_array = email_array
+    self.id = @@contacts_array.length().+(1)
 
   end
 
@@ -38,6 +40,17 @@ class Contacts
   def Contacts.clear
     @@contacts_array = []
   end
+
+  def Contacts.find (input)
+    found_contact = nil
+    @@contacts_array.each do |contact|
+      if contact.id().eql?(input.to_i())
+        found_contact = contact
+      end
+    end
+  found_contact
+end
+
 end
 
 
