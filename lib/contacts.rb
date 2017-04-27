@@ -16,4 +16,13 @@ class Contacts
   def Contacts.all
     @@contacts_array
   end
+
+  def save
+    @@contacts_array.push(self)
+  end
+
+  def Contacts.clear
+    @@contacts_array = []
+  end
+  
 end
