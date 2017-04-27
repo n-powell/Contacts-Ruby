@@ -14,9 +14,9 @@ get('/contact/:id') do
   erb(:contact)
 end
 
-get('/contact/') do
-  @contact = Contacts.find(params.fetch("id").to_i)
-  erb(:contact)
+get('/contact') do
+  @contacts = Contacts.all()
+  erb(:contacts)
 end
 
 post('/contact') do
@@ -30,10 +30,3 @@ post('/contact') do
   contact.save()
   erb(:contacts)
 end
-
-
-
-# get('/vehicles/:first_name') do
-#   @contact = Contacts.find(params.fetch('first_name').to_i())
-#   erb(:vehicle)
-# end
