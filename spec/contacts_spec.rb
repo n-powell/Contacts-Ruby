@@ -54,30 +54,31 @@ describe(Contacts) do
   #       expect(new_contact2.first_name).to(eq("James"))
   #       end
  it('returns the phone array for an instance of a new contact') do
-    new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
+    test_phone_params = {:type => "personal", :number => "5037730029"}
+    new_contact = Contacts.new('Nick', 'Powell', 'Student', test_phone_params)
     new_contact.save
-    expect(Contacts.all).to(eq([new_contact]))
+    expect(Contacts.all[0].phone_array[0].number).to(eq("5037730029"))
   end
- it('returns the phone array for an instance of a new contact') do
-    new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
-    new_contact.save
-    expect(new_contact.phone.personal).to(eq("503"))
-  end
+ # it('returns the phone array for an instance of a new contact') do
+ #    new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
+ #    new_contact.save
+ #    expect(new_contact.phone.personal).to(eq("503"))
+ #  end
 end
 
 
-
-
-  describe(Phone) do
-    it('returns the phone array for an instance of a new contact') do
-      new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
-      expect(new_contact.phone.personal).to(eq("503"))
-    end
-    it('returns the phone array for an instance of a new contact') do
-      new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
-      expect(Phone.all).to(eq([]))
-    end
-  end
+  #
+  #
+  # describe(Phone) do
+  #   it('returns the phone array for an instance of a new contact') do
+  #     new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
+  #     expect(new_contact.phone.personal).to(eq("503"))
+  #   end
+  #   it('returns the phone array for an instance of a new contact') do
+  #     new_contact = Contacts.new('Nick', 'Powell', 'Student', '503')
+  #     expect(Phone.all).to(eq([]))
+  #   end
+  # end
 
 
 # end

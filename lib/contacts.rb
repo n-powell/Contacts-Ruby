@@ -6,18 +6,23 @@ class Contacts
   attr_accessor :first_name
   attr_accessor :last_name
   attr_accessor :job_title
-  attr_accessor :phone
+  attr_accessor :phone_array
 
 
-  def initialize (first_name, last_name, job_title, phone)
+  def initialize (first_name, last_name, job_title, phone_params)
     self.first_name = first_name
     self.last_name = last_name
     self.job_title = job_title
-    self.phone = Phone.new(phone)
+    self.phone_array = [Phone.new(phone_params.fetch(:type), phone_params.fetch(:number))]
+
   end
 
   def Contacts.all
     @@contacts_array
+  end
+
+  def add_phone (phone_params)
+    self.phone_array.push(Phone.new(phone_params.fetch(:type), phone_params.fetch(:number)))
   end
 
   def save
@@ -33,19 +38,12 @@ end
 
 
 class Phone
-  @@phone_array = []
+  attr_accessor :type
+  attr_accessor :number
 
-  attr_accessor :personal
-  # attr_accessor :cell
-  # attr_accessor :home
+  def initialize(type, number)
+    self.type = type
+    self.number = number
 
-  def initialize(personal)
-    self.personal = personal
-    # self.cell = cell
-    # self.home = home
-  end
-
-  def Phone.all
-    @@phone_array
   end
 end
